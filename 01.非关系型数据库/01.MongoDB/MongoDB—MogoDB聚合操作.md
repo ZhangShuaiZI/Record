@@ -1,6 +1,8 @@
 [TOC]
 
-# MongoDB
+
+
+# MongoDB——MogoDB聚合操作
 
 ## MongDB的聚合操作
 
@@ -318,4 +320,118 @@ db.mycollection.aggregate([
     }
 ]);
 ```
+
+#### 8）字符串拆分--$split
+
+```json
+db.mycollection.aggregate([
+        {$project: {"_id":1, "by_user":1, "split": {
+            $split: ["$by_user", "."]
+        }}}
+    ]).pretty()
+```
+
+**输出结果**
+
+```json
+/* 1 createdAt:2020/8/2 下午6:13:45*/
+{
+	"_id" : ObjectId("5f2691d914b00c091cc1ac59"),
+	"by_user" : "runoob.com",
+	"split" : [
+		"runoob",
+		"com"
+	]
+},
+
+/* 2 createdAt:2020/8/2 下午6:13:45*/
+{
+	"_id" : ObjectId("5f2691d914b00c091cc1ac5a"),
+	"by_user" : "runoob.com",
+	"split" : [
+		"runoob",
+		"com"
+	]
+},
+
+/* 3 createdAt:2020/8/2 下午6:13:45*/
+{
+	"_id" : ObjectId("5f2691d914b00c091cc1ac5b"),
+	"by_user" : "Neo4j",
+	"split" : [
+		"Neo4j"
+	]
+}
+```
+
+#### 9）加减乘除运算
+
+* `Add`
+* `Subtract`
+* `Multiply`
+* `Mod`
+
+```json
+db.mycollection.aggregate([
+        {
+            $project: {"_id":1, "likes":1,
+                "add": {$add: ["$likes","$likes"]},
+                "subtract": {$subtract: ["$likes","$likes"]},
+                "multiply": {$multiply: ["$likes", 2]},
+                "mod": {$mod: ["$likes", "$likes"]}
+            }
+        }
+    ]);
+```
+
+**输出结果**
+
+```json
+/* 1 createdAt:2020/8/2 下午6:13:45*/
+{
+	"_id" : ObjectId("5f2691d914b00c091cc1ac59"),
+	"likes" : 100,
+	"add" : 200,
+	"subtract" : 0,
+	"multiply" : 200,
+	"mod" : 0
+},
+
+/* 2 createdAt:2020/8/2 下午6:13:45*/
+{
+	"_id" : ObjectId("5f2691d914b00c091cc1ac5a"),
+	"likes" : 10,
+	"add" : 20,
+	"subtract" : 0,
+	"multiply" : 20,
+	"mod" : 0
+},
+
+/* 3 createdAt:2020/8/2 下午6:13:45*/
+{
+	"_id" : ObjectId("5f2691d914b00c091cc1ac5b"),
+	"likes" : 750,
+	"add" : 1500,
+	"subtract" : 0,
+	"multiply" : 1500,
+	"mod" : 0
+}
+```
+
+#### 10）时间相关：
+
+* `$year`：返回年份
+* `$month`：返回月份
+* `$week`：返回一年内的第几周
+* `$hour`：返回小时
+* `$minute`：返回分钟
+* `$second`：返回秒
+* `$millisecond`：返回毫秒
+* `$dayOfYear`：一年的第几天
+* `$dayOfMonth`：一月的第几天
+* `$dayOfWeek`:一星期的第几天
+
+### 3.管道3：筛选$match
+
+
 
