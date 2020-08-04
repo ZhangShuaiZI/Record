@@ -3,8 +3,7 @@
   * [ForEach遍历游标](#foreach遍历游标)
   * [Limit限制结果数量](#limit限制结果数量)
   * [Skip限制返回记录的起点](#skip限制返回记录的起点)
-    * [Sort排序结果](#sort排序结果)
-
+  * [Sort排序结果](#sort排序结果)
 
 
 
@@ -87,7 +86,7 @@ C1 表的数据如下:
 > db.users.find().skip(1).limit(1)
 ```
 
-### Sort排序结果
+## Sort排序结果
 
 以年龄升序（asc）排列：
 
