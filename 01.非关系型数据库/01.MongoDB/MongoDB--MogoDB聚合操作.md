@@ -433,5 +433,30 @@ db.mycollection.aggregate([
 
 ### 3.管道3：筛选$match
 
+`$match`可搭配条件查询进行数据筛选。详细条件查询请查看
 
+[MongoDB聚合查询]: F:\工作\记录\01.非关系型数据库\01.MongoDB	"MongoDB聚合查询"
+
+这里直接举例子：
+
+```json
+db.mycollection.aggregate([
+    {
+        $match: {
+            "likes": {
+                $lte: 100
+            }
+        }
+    }
+
+]);
+```
+
+### 4. 管道4：多表关联--$lookup
+
+### 5. 管道5：计算文档数量--$count
+
+### 6.管道6：展开数组--$unwind
+
+### 7. 管道7：结果汇入新表--$out
 
