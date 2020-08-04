@@ -6,17 +6,41 @@ MongoDB存储过程与传统关系型数据库的存储过程相同，将一个�
 
 ## 创建存储过程
 
-
+创建一个输入名称修改likes为1000的存储过程。
 
 ```shell
-> db
+> db.system.js.insert({
+	_id: "addLikesByName",
+	value: function(param){
+		return db.mycollection.update(
+			{
+				"name":param,
+				$set: {likes:10000}
+			}
+		)
+	}
+});
 ```
 
+加载存储过程
 
+```
+db.loadServerScripts();
+```
 
-## 加载存储过程
+创建完存储过程之后需要加载，否则MongoDB会报错。
 
 ## 查看存储过程
 
+```
+db.system.js.find().pretty();
+```
+
 ## 执行存储过程
+
+```
+addLikesByName("zhangsan");
+或
+db.eval('addLikesByName("zhangsan")');
+```
 
