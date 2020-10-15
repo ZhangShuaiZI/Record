@@ -2,10 +2,13 @@ import org.json.JSONArray;
 import org.springframework.util.DigestUtils;
 
 import java.lang.reflect.Proxy;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * <p>Title: MainApp</p>
@@ -19,19 +22,21 @@ import java.util.*;
 public class MainApp {
     public static void main(String[] args) {
 
-        List<Integer> list2 = new ArrayList<Integer>();
-        list2.add(20);
-        list2.add(18);
-        list2.add(30);
-        list2.sort(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o2.compareTo(o1);
-            }
-        });
-        for (Integer num : list2) {
-            System.out.println(num);
-        }
+        ArrayList<Object> objects = new ArrayList<>();
+        System.out.println(objects);
+        Stream<Object> stream = objects.stream();
+        System.out.println(stream == null);
+
+//        double random = Math.random();
+//        Double value = new BigDecimal(random).setScale(2, RoundingMode.HALF_UP).doubleValue();
+//        System.out.println(value);
+//        Double value1 = new BigDecimal(random).setScale(1, RoundingMode.HALF_UP).doubleValue();
+//        System.out.println(new Random().nextInt(100));
+//        System.out.println(value1.intValue()*10);
+
+//   double a = 0.0;
+//        System.out.println(a == 0);
+
 
 
 //        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMM");
